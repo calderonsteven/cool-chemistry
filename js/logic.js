@@ -97,10 +97,10 @@ ElementsClient.on('child_added', function(snapshot) {
 			 '</div>';
 
 	$("#elements-container").append(newElement);
-	$( ".draggable" ).draggable(/*{
+	$( ".draggable" ).draggable({
       appendTo: "body",
       helper: "clone"
-    }*/);
+    });
 });
 
 
