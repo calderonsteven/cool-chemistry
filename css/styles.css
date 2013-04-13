@@ -1,0 +1,43 @@
+.draggable { 
+  width: 50px;
+  height: 50px;
+  padding: 0.5em;
+  float: left;
+  border: 1px solid black;
+  margin: 4px;
+  text-align: center;
+}
+
+.draggable:hover { 
+  background-color: rgb(36, 145, 218);
+}
+
+.draggable h3{
+  margin: 0;
+  padding: 0;
+  color: red;
+}
+
+.draggable h2{
+  margin: 0;
+  padding: 0;
+  color: blue;
+}
+
+#droppable { 
+  width: 150px;
+  min-height: 150px; 
+  padding: 0.5em; 
+  float: left; 
+  margin: 10px;
+}
+
+#droppable p{
+  margin: 0;
+  border-bottom: 1px solid black;
+}
+
+#droppable ol{
+  list-style: none;
+  padding: 0;
+}

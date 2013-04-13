@@ -1,41 +1,35 @@
 <!doctype html>
  
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <title>jQuery UI Droppable - Default functionality</title>
+  <title>cool-chemistry</title>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css" />
-  <style>
-  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-  </style>
-  <script>
-  $(function() {
-    $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      }
-    });
-  });
-  </script>
+  
+  <!--custom logic-->
+  <script src="js/elements.js"></script>
+  <script src="js/logic.js"></script>
+  
+  <!--custom styles-->
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
- 
-<div id="draggable" class="ui-widget-content">
-  <p>Drag me to my target</p>
+
+<div id="elements-container">
+
 </div>
  
 <div id="droppable" class="ui-widget-header">
-  <p>Drop here</p>
+  <p>Add Elements Here</p>
+  <ol>
+  </ol>
+  <button id="clearButton" >Clear Elements</button>
 </div>
  
+<div id="calculus-result">
+
+</div>
  
 </body>
 </html>
