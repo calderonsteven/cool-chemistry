@@ -41,3 +41,16 @@
   list-style: none;
   padding: 0;
 }
+
+#deleteElement{
+  background-color: red;
+  height: 85px;
+}
+
+#elements-crud-container{
+  display: inline-block;
+}
+
+#elements-crud-container p{
+  
+}

@@ -1,6 +1,7 @@
 $(document).ready(function(){
-	loadElements();
+	//loadElements(); //ya no los carga desde el archivo elements.js
 	loadBehavior();
+	loadLogicCRUD();
 });
 
 //load elements from elements.js
@@ -26,10 +27,10 @@ function loadBehavior(){
 	});
 
 	//draggable elements
-	$( ".draggable" ).draggable({
-      appendTo: "body",
-      helper: "clone"
-    });
+	//$( ".draggable" ).draggable({
+    //  appendTo: "body",
+    //  helper: "clone"
+    //});
 
     //droppable div
     $( "#droppable" ).droppable({
@@ -79,3 +80,65 @@ function makeCalculus(){
 	$("#calculus-result").html(message);
 	$("#calculus-result").animate({height: "toggle", opacity: "toggle"}, "slow" );
 }
+
+
+//firebase & storage logic
+//load de control remote client
+var ElementsClient = new Firebase('https://chemistry.firebaseio.com/');
+
+ElementsClient.on('child_added', function(snapshot) {
+  	var message = snapshot.val();
+  	console.log(snapshot.name());
+
+  	//add the element to the elements list
+	var newElement = '<div class="draggable" data-name="'+snapshot.name()+'" >' +
+				 '<h3>'+message.name+'</h3>' + 
+				 '<h2>'+message.charge+'</h2>'+
+			 '</div>';
+
+	$("#elements-container").append(newElement);
+	$( ".draggable" ).draggable(/*{
+      appendTo: "body",
+      helper: "clone"
+    }*/);
+});
+
+
+ElementsClient.on('child_removed', function(snapshot) {
+  	
+});
+
+function loadLogicCRUD(){
+	$("#addElementBtn").click(function(){
+		var name = $("#nameText").val() ;
+		var charge = $("#chargeText").val();
+
+		//store in firebase
+		ElementsClient.push({name: name, charge: charge});	
+		
+		//clear form
+		$("#nameText").val("");
+		$("#chargeText").val("");
+	});
+
+	$( "#deleteElement" ).droppable({
+      drop: function( event, ui ) {
+      	//get the values from the DOM
+      	var name = ui.draggable.find("h3").text();
+      	var charge = ui.draggable.find("h2").text();
+      	var elementsList = $(this).find("ol");
+
+      	//get the snapshotName
+      	var snapshotName = ui.draggable.data("name");
+
+      	//delete from firebase
+      	var snapshotRef = new Firebase('https://chemistry.firebaseio.com/'+snapshotName);
+		snapshotRef.remove();
+
+		//animation
+		ui.draggable.hide("explode", "slow");
+		//ui.draggable.remove();
+      }
+    });
+}
+
