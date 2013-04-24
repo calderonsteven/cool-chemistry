@@ -1,0 +1,57 @@
+#chem-canvas{
+	background:url(
+		data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVQIW2OMq7zlw4ADMIIkF7WrbcEmP+gkAarWGgXyq5CNAAAAAElFTkSuQmCC
+	) repeat;
+	bottom: 0;
+	top: 60px;
+	position: absolute;
+	right: 20px;
+}
+
+#formatedFormula{
+	font-family:serif; 
+	font-size:150%; 
+	line-height:160%;
+}
+
+/**/​
+.formula-container .edit-btn{
+	display: none;
+	position: relative;
+	top: -17px;
+	left: 17px;
+}
+.formula-container .title{	
+	position: relative;
+	top: -15px;
+	right: 15px;
+}
+
+#canvas-list{
+	margin-top: 25px;
+}
+
+#canvas-list li{	
+	list-style: none;
+	float: left;
+	padding-left: 10px;
+	font-size: 43px;
+	padding-right: 10px;
+	height: 40px;
+}
+
+#canvas-list ol{	
+	margin: 0;
+	border-bottom: 1px solid black;
+	padding: 18px;
+	height: 38px;
+}
+
+.formula-name{
+	font-size: 25px;
+}
+
+#canvas-list li:hover{
+	color: #3a87ad;
+	font-weight: bolder;
+}
