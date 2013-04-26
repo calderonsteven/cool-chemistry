@@ -2,10 +2,10 @@
 	background:url(
 		data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVQIW2OMq7zlw4ADMIIkF7WrbcEmP+gkAarWGgXyq5CNAAAAAElFTkSuQmCC
 	) repeat;
-	bottom: 0;
+	/*bottom: 0;
 	top: 60px;
 	position: absolute;
-	right: 20px;
+	right: 20px;*/
 }
 
 #formatedFormula{
@@ -42,9 +42,9 @@
 
 #canvas-list ol{	
 	margin: 0;
-	border-bottom: 1px solid black;
+	/*border-bottom: 1px solid black;
 	padding: 18px;
-	height: 38px;
+	height: 38px;*/
 }
 
 .formula-name{

@@ -85,7 +85,7 @@
 				<div class="controls">
 				<div class="input-prepend">
 					<span class="add-on"><i class="icon-beaker"></i></span>
-					<input type="text" id="inputFormula" placeholder="Type your new Equation here!" onkeyup="formatFormula()">
+					<input type="text" id="inputFormula" placeholder="Type your formula here!" onkeyup="formatFormula()">
 				</div>
 				<!--<span class="help-inline">Please correct the error</span>-->
 				</div>
@@ -95,7 +95,7 @@
 				</span>
 
 				<br>
-              	<button class="btn btn-primary" onclick="addFormulaToList()" >Add Equation</button>
+              	<button class="btn btn-primary" onclick="addFormulaToList()" >Add component</button>
 
               	<hr>
               </li>
@@ -104,6 +104,7 @@
           </div><!--/.well -->
         </div>
         <div id="chem-canvas" class="span9 well">
+        	<!--
         	<div class="btn-toolbar">
 			  <div class="btn-group">				
 				<a class="btn btn-large draggable" data-operator="+" href="#"><i class="icon-plus"></i></a>
@@ -114,9 +115,25 @@
 				<a class="btn btn-large draggable" data-operator="<->" href="#"><i class="icon-resize-horizontal"></i></a>
 			  </div>			  
 			</div>
+			-->
 			<div id="canvas-list" class="well well-large">
-				<ol></ol>
+				<ol class="fls">
+					<li>↔</li>
+				<!--</ol>
+				<ul>
+					<li>↔</li>
+				</ul>
+				<ol class="fls">-->
+					<li>product1</li>
+				</ol>
 			</div>
+
+			<!--
+			<div class="well well-large span9"></div>
+			<div class="well well-large offset9">
+				<a class="btn btn-large"><i class="icon-trash"></i></a>
+			</div>
+			-->
         </div>
 		</div>
 	</div>

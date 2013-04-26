@@ -95,3 +95,24 @@ function parseFormula(tok) {
 	//return lhs[0];//for two or more expressions
 	return lhs[0];
 }
+
+/*coeficients logic*/
+var ElementsLogic = function(){
+	var elements = {};
+	
+	this.Elements = function(){ return elements; }
+
+	this.GetCoefficients = function(element){ return elements[element]; }
+ 
+	this.addElement = function(element){
+		if(elements[element] == undefined){
+			elements[element] = 0;
+		}
+		
+		++elements[element];
+	}	
+	
+	return this;
+}
+
+var elements = new ElementsLogic();

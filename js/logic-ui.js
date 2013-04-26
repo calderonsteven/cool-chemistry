@@ -2,7 +2,10 @@ $("#clear-btn").click(function(){
   $("#canvas-list ol").empty();
 });
 
+//$( "#canvas-list ol li" ).droppable({
 $( "#canvas-list" ).droppable({
+      activeClass: "ui-state-hover",
+      hoverClass: "ui-state-active",
       drop: function( event, ui ) {
         //for sort behavior
         if(ui.draggable.attr("class") == "ui-sortable-helper"){
@@ -10,19 +13,33 @@ $( "#canvas-list" ).droppable({
         }
 
       	//get the values from the DOM
-      	/*var name = ui.draggable.find("h3").text();
-      	var charge = ui.draggable.find("h2").text();*/
       	var elementsList = $(this).find("ol");
+        //var elementsList = $(this);
+
+        //sum the new item to the elements list
+        var formulaStr = ui.draggable.find(".formula-name").text();
+        elements.addElement(formulaStr);
 
       	//append the new element
-        //$( '<li data-name="'+name+'" data-charge="'+charge+'" ></li>' ).text( 
         $('<li></li>').html( 
           function(){
             //ui.draggable.find(".title").text()
             if(ui.draggable.data("operator") != undefined){
               return ui.draggable.data("operator");
             }else{
-              return ui.draggable.find(".formula-name").html();
+              var formulaFormated = ui.draggable.find(".formula-name").html();
+
+              //check if need Add the coefficients
+              var coef = elements.GetCoefficients(formulaStr);
+              if(coef > 1){
+                //formulaFormated = "<span>"+coef+"</span>" + formulaFormated;
+                //find the formula class
+                $("."+formulaStr).html(coef);
+              }else{
+                //$($(formulaFormated)[0]).attr("data-test", "test")
+                //return '<div><span class="coef"></span>'+formulaFormated+'</div>';
+                return '<span class="coef '+formulaStr+'"></span>'+formulaFormated;
+              }
             }
           }
         ).appendTo( elementsList );
