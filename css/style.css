@@ -27,11 +27,11 @@
 	right: 15px;
 }
 
-#canvas-list{
+.canvas-list{
 	margin-top: 25px;
 }
 
-#canvas-list li{	
+.canvas-list li{	
 	list-style: none;
 	float: left;
 	padding-left: 10px;
@@ -40,7 +40,7 @@
 	height: 40px;
 }
 
-#canvas-list ol{	
+.canvas-list ol{	
 	margin: 0;
 	/*border-bottom: 1px solid black;
 	padding: 18px;
@@ -51,7 +51,21 @@
 	font-size: 25px;
 }
 
-#canvas-list li:hover{
+.canvas-list li:hover{
 	color: #3a87ad;
 	font-weight: bolder;
+}
+
+/***********/
+.rxn{
+  min-width: 100px;
+}
+.rxnLetfSide{
+  /*background-color: red;*/
+}
+.rxnRightSide{
+  /*background-color: blue;*/
+}
+.equilibrium{
+  cursor: pointer;
 }
