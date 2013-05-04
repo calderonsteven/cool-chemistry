@@ -1,0 +1,29 @@
+<!doctype html>
+ 
+<html>
+<head>
+  <title>chemistry-parser</title>
+  <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>-->
+  
+  <!--custom logic-->
+  <script src="js/parser-core.js"></script>
+  <script src="js/parser2.js"></script>
+  
+  <!--custom styles-->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+
+  <input type="text" id="inputFormula" autocomplete="off" onkeyup="evaluateFormula()" />
+  <input type="button" value="Format"/>
+
+  <span id="balanced" style="font-family:serif; font-size:150%; line-height:160%;"></span>
+  <span id="message"></span>
+  
+  <code id="codeOutput">&nbsp;</code>
+</body>
+</html>

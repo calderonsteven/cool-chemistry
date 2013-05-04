@@ -1,0 +1,21 @@
+/*Storage Logic*/
+var ProductXLogic = {
+  CloseEdit: function(){
+    $('.productX').popover("hide");
+  },
+  
+  SaveChanges: function(e){
+    //save the new equilibrium
+    var equilibrium = $(e).parent().find("input").val();
+    $(e).parent().parent().parent().parent().find(".equilibrium sup").text(equilibrium);
+
+    StorageLogic.CloseEdit();
+  },
+  
+  DeleteFormula: function (){
+    var res = confirm("are you sure?");       
+    if(res){
+      StorageLogic.CloseEdit();
+    }       
+  }
+}

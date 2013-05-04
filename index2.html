@@ -1,0 +1,48 @@
+<!doctype html>
+ 
+<html>
+<head>
+  <title>cool-chemistry</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+  
+  <!--custom logic-->
+  <script src="js/elements.js"></script>
+  <script src="js/logic.js"></script>
+  
+  <!--custom styles-->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="elements-container">
+
+</div>
+ 
+<div id="droppable" class="ui-widget-header">
+  <p>Add Elements Here</p>
+  <ol>
+  </ol>
+  <button id="clearButton" >Clear Elements</button>
+</div>
+ 
+<div id="calculus-result">
+
+</div>
+ 
+<hr>
+
+<div id="elements-crud-container">
+  <input id="nameText" type="text" placeholder="Name" />
+  <input id="chargeText" type="text" placeholder="Charge" />
+  <button id="addElementBtn" >Add Element</button>
+  <div id="deleteElement">
+    <p>Drag here to delete</p>
+  </div>
+</div>
+
+
+</body>
+</html>
