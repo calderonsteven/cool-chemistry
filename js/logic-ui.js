@@ -9,7 +9,7 @@ function SetDropableTheRxnList(){
       drop: function( event, ui ) {
         //debugger;
         //for sort behavior
-        if(ui.draggable.attr("class") == "ui-sortable-helper"){
+        if(ui.draggable.attr("class").match("ui-sortable-helper")){
           return;
         }
 
@@ -107,25 +107,38 @@ function AddFormulaContainerBehavior(){
   });
 }
 
-/*Storage Logic*/
-var StorageLogic = {
+/*Equilibrium Logic*/
+var EquilibriumLogic = {
   CloseEdit: function(){
     $('.equilibrium').popover("hide");
   },
   
   SaveChanges: function(e){
     //save the new equilibrium
-    var equilibrium = $(e).parent().find("input").val();
-    $(e).parent().parent().parent().parent().find(".equilibrium sup").text(equilibrium);
+    var equilibriumSup = $(e).parent().find(".eqSup").val();
+    var equilibriumSub = $(e).parent().find(".eqSub").val();
 
-    StorageLogic.CloseEdit();
+    $(e).parent().parent().parent().parent().find(".equilibrium sup").text(equilibriumSup);
+    $(e).parent().parent().parent().parent().find(".equilibrium sub").text(equilibriumSub);
+
+    EquilibriumLogic.CloseEdit();
   },
   
   DeleteFormula: function (){
     var res = confirm("are you sure?");       
     if(res){
-      StorageLogic.CloseEdit();
+      EquilibriumLogic.CloseEdit();
     }       
+  },
+
+  CalculateSub: function(e){
+    var inverso = (1 / e.value).toFixed(2); //suponiendo que es asi el calculo
+    $(e).parent().parent().find(".eqSub").val(inverso);
+  },
+
+  CalculateSup: function(e){
+    var inverso = (1 / e.value).toFixed(2); //suponiendo que es asi el calculo
+    $(e).parent().parent().find(".eqSup").val(inverso);
   }
 }
 
@@ -136,12 +149,22 @@ function AddEquilibriumBehavior(){
     html : true,
     title : 'Edit equilibrium constant',
     content : function(){
+      var eqSupValue = $(this).find("sup").text();
+      var eqSubValue = $(this).find("sub").text();
+
       var html = 
               '<div class="control-group">'+
-              '    <input type="number" step="any" value="0.0">'+
+              '  <div class="input-prepend">'+
+              '   <span class="add-on"><i class=" icon-arrow-right"></i></span>'+
+              '    <input class="eqSup" type="number" step="any" value="'+ eqSupValue +'" onkeypress="EquilibriumLogic.CalculateSub(this)" >'+
+              '  </div>'+
+              '  <div class="input-prepend">'+
+              '   <span class="add-on"><i class=" icon-arrow-left"></i></span>'+
+              '    <input class="eqSub" type="number" step="any" value="'+ eqSubValue +'" onkeypress="EquilibriumLogic.CalculateSup(this)">'+
+              '  </div>'+
               '</div>'+
-              '<button type="button" class="btn btn-small btn-primary" onclick="StorageLogic.SaveChanges(this)" >Save</button>'+
-              '<button type="button" class="btn btn-small" onclick="StorageLogic.CloseEdit()" >Cancel</button>';
+              '<button type="button" class="btn btn-small btn-primary" onclick="EquilibriumLogic.SaveChanges(this)" >Save</button>'+
+              '<button type="button" class="btn btn-small" onclick="EquilibriumLogic.CloseEdit()" >Cancel</button>';
       return html;
     },
   });
@@ -153,8 +176,69 @@ function AddEquilibriumBehavior(){
     });
   });
 }
-
 AddEquilibriumBehavior();
+
+/*ProductX Behavior*/
+/*Storage Logic*/
+var ProductXLogic = {
+  CloseEdit: function(){
+    $('.productX').popover("hide");
+  },
+  
+  SaveChanges: function(e){
+    //save the Values from ProductX
+    //debugger;
+    var isSolid = $(e).parent().parent().find(".isSolid").is(':checked');
+    var isSolidSymbol = (isSolid ? "↓" : "");
+    $(e).parent().parent().parent().parent().parent().find(".productX sup").text(isSolidSymbol);
+
+    ProductXLogic.CloseEdit();
+  },
+  
+  DeleteFormula: function (){
+    var res = confirm("are you sure?");       
+    if(res){
+      ProductXLogic.CloseEdit();
+    }       
+  }
+}
+
+function AddProductXBehavior(){
+  //add the popover to the productX
+  $(".productX").popover({      
+    html : true,
+    title : 'Edit ProductX',
+    content : function(){
+      //get the value from the DOM
+      var isSolid = $(this).find("sup").text() != "";
+
+      var html = 
+        '<div id="formula-form" class="control-group">'+
+        ' <div class="controls">'+
+        '  <div class="input-prepend">'+
+        '   <span class="add-on"><i class="icon-beaker"></i></span>'+
+        '   <input type="text" id="inputFormula" placeholder="Type your formula here!" onkeyup="formatFormula()">'+
+        '  </div>'+
+        '  <div class="input-prepend">'+
+        '   <span class="add-on"><i class="icon-filter"></i></span>'+
+        '   <input type="text" id="inputFormulaConcentration" placeholder="Concentration">'+
+        '  </div>'+
+        '  <label class="checkbox">'+
+        '   <input class="isSolid" type="checkbox" '+ (isSolid ? "checked" : "") +' > Is Solid?'+
+        '  </label>'+
+        ' </div>'+
+        ' <div class="control-group">'+
+        '  <button type="button" class="btn btn-small btn-primary" onclick="ProductXLogic.SaveChanges(this)" >Save</button>'+
+        '  <button type="button" class="btn btn-small" onclick="ProductXLogic.CloseEdit()" >Cancel</button>'+
+        ' </div>'+
+        '</div>';
+      return html;
+    },
+  });
+}
+AddProductXBehavior();
+/*End ProductX Behavior*/
+
 
 $("#add-rxn-btn").click(function(){
   //use the dataRxId to manage the rxn components 
@@ -163,8 +247,8 @@ $("#add-rxn-btn").click(function(){
   '<div class="well well-large canvas-list" data-rxn-id="'+ dataRxId +'">'+
     '  <ol class="fls">'+
     '    <li class="rxn rxnLetfSide"><ol></ol></li>'+
-    '    <li class="equilibrium"><span>⇄<sup></sup></span></li>'+
-    '    <li class="rxn rxnRightSide"><ol><li>ProductX</li></ol></li>'+
+    '    <li class="equilibrium"><span><sub></sub>⇄<sup></sup></span></li>'+
+    '    <li class="rxn rxnRightSide"><ol><li class="productX" >ProductX<sup></sup></li></ol></li>'+
     '  </ol>'+
     '  <button class="btn pull-right btn-trash" type="button">'+
     '    <i class="icon-trash"></i>'+
@@ -174,4 +258,5 @@ $("#add-rxn-btn").click(function(){
   $("#chem-canvas").append(canvasListTemplete);
   SetDropableTheRxnList();
   AddEquilibriumBehavior();
+  AddProductXBehavior();
 });

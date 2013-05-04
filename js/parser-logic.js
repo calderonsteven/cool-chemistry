@@ -42,14 +42,16 @@ function formulaToHtml(formulaStr){
 
 function addFormulaToList(){
 	var formulaStr = $("#inputFormula").val();
+	var formulaConcentration = $("#inputFormulaConcentration").val();
 	var formatedFormula = formulaToHtml(formulaStr);
 
 	var newDiv = '<div class="formula-container well draggable">'+
 				 '	<button class="btn btn-mini pull-right edit-btn" type="button" >'+
 				 '		<i class="icon-trash"></i>'+
 				 '	</button>'+
-				 '	<div class="title">new product</div>'+
+				 //'	<div class="title">new product</div>'+
 				 '	<div class="formula-name">'+ $(formatedFormula).html() +'</div>'+
+				 '	<div class="formula-concentration">'+ formulaConcentration +'</div>'+
 				 '</div>	';
 	//console.log(newDiv);
 
@@ -60,6 +62,7 @@ function addFormulaToList(){
 	//clear the UI
 	$("#inputFormula").val("");
 	$("#formatedFormula").html("");
+	$("#inputFormulaConcentration").val("");
 	$("#formula-form").removeClass("error");
 	$("#formula-form").removeClass("success");
 
