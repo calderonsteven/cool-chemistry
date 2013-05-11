@@ -46,6 +46,9 @@ function addFormulaToList(){
 	var formatedFormula = formulaToHtml(formulaStr);
 
 	var newDiv = '<div class="formula-container well draggable">'+
+				 '  <button class="btn pull-right btn-mini" type="button">'+
+			     '    <i class="icon-edit"></i>'+
+			     '  </button>'+
 				 '	<button class="btn btn-mini pull-right edit-btn" type="button" >'+
 				 '		<i class="icon-trash"></i>'+
 				 '	</button>'+
