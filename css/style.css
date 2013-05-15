@@ -73,3 +73,14 @@
 .productX{
 	cursor: pointer;;
 }
+.equilibrium sub{
+	bottom: -12px;
+	left: 42px;
+	font-size: 22px;
+}
+
+.equilibrium sup{
+	top: -29px;
+	left: -42px;
+	font-size: 22px;
+}
