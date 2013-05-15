@@ -46,6 +46,7 @@ function addFormulaToList(){
 	var formatedFormula = formulaToHtml(formulaStr);
 
 	var newDiv = '<div class="formula-container well draggable">'+
+				//vista principal del componente
 				 '<div class="formula-formated" >'+
 				 '  <button class="btn pull-right btn-mini btn-edit" type="button">'+
 			     '    <i class="icon-edit"></i>'+
@@ -58,6 +59,7 @@ function addFormulaToList(){
 				 '</div>'+
 				 '<div>'+
 				
+				//edicion del componente ya creado
 				'<div class="controls" style="display:none">'+
 				'	<div class="input-prepend">'+
 				'		<span class="add-on"><i class="icon-beaker"></i></span>'+
