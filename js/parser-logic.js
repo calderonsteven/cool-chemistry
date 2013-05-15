@@ -46,16 +46,39 @@ function addFormulaToList(){
 	var formatedFormula = formulaToHtml(formulaStr);
 
 	var newDiv = '<div class="formula-container well draggable">'+
-				 '  <button class="btn pull-right btn-mini" type="button">'+
+				 '<div class="formula-formated" >'+
+				 '  <button class="btn pull-right btn-mini btn-edit" type="button">'+
 			     '    <i class="icon-edit"></i>'+
 			     '  </button>'+
-				 '	<button class="btn btn-mini pull-right edit-btn" type="button" >'+
+				 '	<button class="btn pull-right btn-mini btn-trash" type="button" >'+
 				 '		<i class="icon-trash"></i>'+
 				 '	</button>'+
-				 //'	<div class="title">new product</div>'+
 				 '	<div class="formula-name">'+ $(formatedFormula).html() +'</div>'+
 				 '	<div class="formula-concentration">'+ formulaConcentration +'</div>'+
-				 '</div>	';
+				 '</div>'+
+				 '<div>'+
+				
+				'<div class="controls" style="display:none">'+
+				'	<div class="input-prepend">'+
+				'		<span class="add-on"><i class="icon-beaker"></i></span>'+
+				'		<input type="text" id="inputFormula" value="'+ formulaStr +'">'+
+				'	</div>'+
+				'	<div class="input-prepend">'+
+				'		<span class="add-on"><i class="icon-filter"></i></span>'+
+				'		<input type="text" id="inputFormulaConcentration" value="'+ formulaConcentration +'">'+
+				'	</div>'+
+
+				'  <button class="btn pull-right2 btn-mini btn-ok" type="button">'+
+				'    <i class="icon-ok"></i>'+
+				'  </button>'+
+				'	<button class="btn pull-right2 btn-mini btn-reply" type="button" >'+
+				'		<i class="icon-reply"></i>'+
+				'	</button>'+
+
+				'</div>'+
+
+				 '</div>'+
+				 '</div>';
 	//console.log(newDiv);
 
 	//add the new formula to the list
@@ -116,6 +139,12 @@ var ElementsLogic = function(){
 		}
 		
 		++elements[element];
+	}	
+
+	this.RemoveElement = function(element){
+		if(elements[element] != undefined){
+			elements[element] = undefined;
+		}
 	}	
 	
 	return this;
