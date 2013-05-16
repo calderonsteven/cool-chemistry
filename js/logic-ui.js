@@ -4,9 +4,11 @@ $("#clear-btn").click(function(){
 });
 
 function AddPlusSignToRxn(list){
-  //remove all plus signs
+  //remove all plus signs and empty elements
+  //$(list).parent().find(".componet:empty").remove();
   $(list).find(".plusSign").remove();
-  var componentsInRxn = $(list).find("ol li");
+
+  var componentsInRxn = $(list).parent().find(".componet:visible");
   for (var i = 0; i < componentsInRxn.length-1; i++) {
     $(componentsInRxn[i]).after('<li class="plusSign">+</li>');
   };
@@ -68,7 +70,7 @@ function SetDropableTheRxnList(){
 
         //add sortable behavior
         $(".rxn ol").sortable();
-        $(".rxn ol").disableSelection();
+        //$(".rxn ol").disableSelection();
 
         //add plus signs
         AddPlusSignToRxn(this);
@@ -99,6 +101,9 @@ var ComponentInRxnLogic = {
     if(res){
       //the magic effect
       $(".CurrentComponent").effect("drop", function(){
+        //remove all
+        AddPlusSignToRxn($(".CurrentComponent").parent());
+
         //remove the coef class from the actual element
         $(".CurrentComponent .coef").removeClass("coef")
         
@@ -153,7 +158,7 @@ $(".draggable").draggable({
 
 //refactor this
 $(".rxn ol").sortable();
-$(".rxn ol").disableSelection();
+//$(".rxn ol").disableSelection();
 
 function AddFormulaContainerBehavior(){
   //remove the component from the list
