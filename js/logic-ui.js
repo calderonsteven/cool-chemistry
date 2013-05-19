@@ -4,11 +4,17 @@ $("#clear-btn").click(function(){
 });
 
 function AddPlusSignToRxn(list){
-  //remove all plus signs and empty elements
-  //$(list).parent().find(".componet:empty").remove();
+  //remove all empty elements
+  var emptyList = $(list).find(".componet:empty:not(.ui-sortable-placeholder)")
+  if(emptyList.length > 0){
+    $(emptyList).remove();
+  }
+
+  //remove all plus signs
   $(list).find(".plusSign").remove();
 
-  var componentsInRxn = $(list).parent().find(".componet:visible");
+  //count all components
+  var componentsInRxn = $(list).find(".componet:not(.ui-sortable-helper)");
   for (var i = 0; i < componentsInRxn.length-1; i++) {
     $(componentsInRxn[i]).after('<li class="plusSign">+</li>');
   };
@@ -99,16 +105,15 @@ var ComponentInRxnLogic = {
     //debugger;
     var res = confirm("are you sure?");       
     if(res){
+      var currentItem = $(".CurrentComponent");
+        
       //the magic effect
-      $(".CurrentComponent").effect("drop", function(){
-        //remove all
-        AddPlusSignToRxn($(".CurrentComponent").parent());
-
+      $(currentItem).effect("drop", function(){
         //remove the coef class from the actual element
-        $(".CurrentComponent .coef").removeClass("coef")
+        $(this).find(".coef").removeClass("coef")
         
         //get the element key from the DOM
-        var elementKey = $(".CurrentComponent span").attr("class");
+        var elementKey = $(this).find("span").attr("class");
         
         //remove the element from the list
         elements.RemoveElement(elementKey);
@@ -116,9 +121,14 @@ var ComponentInRxnLogic = {
         //close the dialog
         ComponentInRxnLogic.CloseEdit();
 
+        //get the parent list
+        var parentList = $(this).parent()
+
         //remove from the DOM
-        var currentItem = $(".CurrentComponent");
         $(currentItem).remove();
+
+        //remove all
+        AddPlusSignToRxn(parentList);
       });
     }       
   }
